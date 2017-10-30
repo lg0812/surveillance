@@ -14,6 +14,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.req.get('january/wx/test_success', {str: 'abc'}));
-    console.log(this.req.reqUtils({path: 'january/goods/details', data: {goodsId: 1},method:"POST"}));
+    this.req.reqUtils({
+      path: 'january/goods/details', data: {goodsId: 1}, method: 'POST', success: function (data) {
+        console.log(data);
+      }
+    });
   }
 }
