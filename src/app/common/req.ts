@@ -6,7 +6,9 @@ import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 @Injectable()
 export class Req {
-  private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});
+  private headers = new Headers({
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+  });
 
   constructor(private http: Http) {
     console.log(http);
@@ -14,10 +16,12 @@ export class Req {
 
   get(url, params) {
     let queryString = '?';
-    for (const p in params) {
-      queryString += p + '=' + params[p] + '&';
+    if (params) {
+      for (const p in params) {
+        queryString += p + '=' + params[p] + '&';
+      }
     }
-    return this.http.get(apiHost + url, {headers: this.headers})
+    return this.http.get(apiHost + url + queryString)
       .toPromise()
       .then(res => {
         // let data = response.json().data;
@@ -30,7 +34,7 @@ export class Req {
 
   post(url, params) {
     return this.http
-      .post(apiHost + url, params, {headers: this.headers})
+      .post(apiHost + url, null, {headers: this.headers, search: params})
       .toPromise()
       .then(res => {
         const data = res.json();

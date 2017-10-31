@@ -3,15 +3,15 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {Req} from '../../common/req';
-
+import {Router} from '@angular/router';
 @Component({
-  selector: 'app-root',
+  selector: 'app-request',
   templateUrl: './request.html'
 })
 export class RequestComponent implements OnInit {
   results: string[];
 
-  constructor(private req: Req) {
+  constructor(private req: Req, private router: Router) {
     console.log(req);
   }
 
