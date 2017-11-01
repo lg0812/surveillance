@@ -7,7 +7,7 @@
     "callable-types": true,
     "class-name": true,
     "comment-format": [
-      false,
+      true,
       "check-space"
     ],
     "curly": true,
@@ -71,7 +71,7 @@
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
-    "no-var-keyword": false,
+    "no-var-keyword": true,
     "object-literal-sort-keys": false,
     "one-line": [
       true,
@@ -80,9 +80,9 @@
       "check-else",
       "check-whitespace"
     ],
-    "prefer-const": false,
+    "prefer-const": true,
     "quotemark": [
-      false,
+      true,
       "single"
     ],
     "radix": true,
@@ -134,7 +134,7 @@
     "no-output-rename": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-    "component-class-suffix": false,
+    "component-class-suffix": true,
     "directive-class-suffix": true,
     "invoke-injectable": true
   }

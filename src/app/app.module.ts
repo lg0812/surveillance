@@ -4,6 +4,7 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {ErrorComponent} from './error/error.component';
 import {LoginComponent} from './login/login.component';
+import {SuperviseComponent} from './supervise/supervise.component';
 import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {RequestResultComponent} from './demo/request.result/request.result';
@@ -19,7 +20,8 @@ import {AppRoutingModule} from './app-routeing.module';
     ErrorComponent,
     RequestResultComponent,
     BdMapComponent,
-    LoginComponent
+    LoginComponent,
+    SuperviseComponent
   ],
   imports: [
     BrowserModule,

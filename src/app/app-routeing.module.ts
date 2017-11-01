@@ -5,7 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {RequestResultComponent} from './demo/request.result/request.result';
-
+import {SuperviseComponent} from './supervise/supervise.component';
 const appRoutes: Routes = [
   // 空路径（''）表示应用的默认路径，当URL为空时就会访问那里，因此它通常会作为起点。 这个默认路由会重定向到URL /login
   {
@@ -26,6 +26,10 @@ const appRoutes: Routes = [
   {
     path: 'map',
     component: BdMapComponent,
+  },
+  {
+    path: 'supervise',
+    component: SuperviseComponent,
   },
   {
     path: 'login',
