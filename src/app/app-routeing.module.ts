@@ -1,16 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from './app.component';
 import {ErrorComponent} from './error/error.component';
+import {LoginComponent} from './login/login.component';
 import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {RequestResultComponent} from './demo/request.result/request.result';
 
 const appRoutes: Routes = [
-  // 空路径（''）表示应用的默认路径，当URL为空时就会访问那里，因此它通常会作为起点。 这个默认路由会重定向到URL /
+  // 空路径（''）表示应用的默认路径，当URL为空时就会访问那里，因此它通常会作为起点。 这个默认路由会重定向到URL /login
   {
     path: '',
-    redirectTo: '/map',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   // 跳转到request页面
@@ -27,16 +27,23 @@ const appRoutes: Routes = [
     path: 'map',
     component: BdMapComponent,
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   // 当所请求的URL不匹配前面定义的路由表中的任何路径时，路由器就会选择此路由
   {
     path: '**',
     component: ErrorComponent
   }]
+
+
 @NgModule({
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      {enableTracing: true} // <-- debugging purposes only
+      // <-- debugging purposes only  并且使用hash路由
+      {enableTracing: true, useHash: true}
     )
   ],
   exports: [

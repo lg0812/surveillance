@@ -1,0 +1,26 @@
+.login-bg {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: #000 url(../../assets/images/bgLogin.jpg) center center no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.login-head {
+  height: 80px;
+  background-color: rgba(0, 0, 0, .3);
+  top: 0px;
+  left: 0px;
+  padding: 8px 0px 8px 80px;
+}
+
+.login-footer {
+  height: 40px;
+  background-color: rgba(0, 0, 0, .8);
+  color: #666;
+  bottom: 0px;
+  left: 0px;
+  line-height: 40px;
+}
