@@ -1,6 +1,6 @@
 {
-  "/january": {
-    "target": "http://www.yltfy.cn/january",
+  "/": {
+    "target": "http://www.yltfy.cn",
     "secure": false
   }
 }
