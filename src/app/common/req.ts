@@ -6,6 +6,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 @Injectable()
 export class Req {
+  count:number=1;
   private headers = new Headers({
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
   });

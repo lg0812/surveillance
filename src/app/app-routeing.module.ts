@@ -6,6 +6,7 @@ import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {RequestResultComponent} from './demo/request.result/request.result';
 import {SuperviseComponent} from './supervise/supervise.component';
+import {LoginReducerComponent} from './demo/reducer/reducer.component';
 const appRoutes: Routes = [
   // 空路径（''）表示应用的默认路径，当URL为空时就会访问那里，因此它通常会作为起点。 这个默认路由会重定向到URL /login
   {
@@ -28,6 +29,10 @@ const appRoutes: Routes = [
     component: BdMapComponent,
   },
   {
+    path: 'reducer',
+    component: LoginReducerComponent,
+  },
+  {
     path: 'supervise',
     component: SuperviseComponent,
   },
@@ -47,7 +52,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       // <-- debugging purposes only  并且使用hash路由
-      {enableTracing: true, useHash: true}
+      {enableTracing: false, useHash: true}
     )
   ],
   exports: [
