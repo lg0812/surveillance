@@ -14,6 +14,7 @@
   top: 0px;
   left: 0px;
   padding: 8px 0px 8px 80px;
+  overflow: hidden;
 }
 
 .login-footer {
