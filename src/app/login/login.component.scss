@@ -52,6 +52,7 @@ $pad: 8px;
     margin-right: $head-height * (5/8);
     height: $head-height - $pad*2;
     width: auto;
+    float:left;
   }
   div {
     line-height: $head-height - $pad*2;
@@ -59,6 +60,7 @@ $pad: 8px;
     color: #fff;
     border-left: 1px solid #FFF;
     font-size: $head-height * (3/8);
+    float:left;
   }
 }
 
@@ -80,59 +82,3 @@ $pad: 8px;
   line-height: $head-footer;
   font-size: $head-height/8;
 }
-
-//@media (max-width: 576px) {
-//  $abs: 0;
-//  $head-height: 40px;
-//  $head-footer: 40px;
-//  $pad: 8px;
-//  .login-bg {
-//    top: $abs;
-//    left: $abs;
-//    right: $abs;
-//    bottom: $abs;
-//    background: #000 url(../../assets/images/bgLogin.jpg) center center no-repeat;
-//    background-size: cover;
-//    overflow: hidden;
-//  }
-//  .login-body {
-//    top: $head-height;
-//    bottom: $head-footer;
-//    overflow-y: scroll;
-//  }
-//  .login-head {
-//    height: $head-height;
-//    background-color: rgba(0, 0, 0, .3);
-//    top: $abs;
-//    left: $abs;
-//    padding: $pad 0px $pad $head-height;
-//    overflow: hidden;
-//    img {
-//      margin-right: $head-height * (5/8);
-//      height: $head-height - $pad*2;
-//      width: auto;
-//    }
-//    div {
-//      line-height: $head-height - $pad*2;
-//      padding-left: $head-height * (3/8);
-//      color: #fff;
-//      border-left: 1px solid #FFF;
-//      font-size: $head-height * (3/8);
-//    }
-//  }
-//  .login-panel {
-//    width: 100%;
-//    height: 800px;
-//    background-color: red;
-//    margin: 0;
-//  }
-//  .login-footer {
-//    height: $head-footer;
-//    background-color: rgba(0, 0, 0, .8);
-//    color: #666;
-//    bottom: $abs;
-//    left: $abs;
-//    line-height: $head-footer;
-//    font-size: $head-height/8;
-//  }
-//}
