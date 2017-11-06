@@ -32,8 +32,8 @@ $pad: 8px;
 }
 
 .login-body {
-  top: $head-height;
-  bottom: $head-footer;
+  padding-top: $head-height;
+  padding-bottom: $head-footer;
   overflow-y: scroll;
 }
 
@@ -52,7 +52,7 @@ $pad: 8px;
     margin-right: $head-height * (5/8);
     height: $head-height - $pad*2;
     width: auto;
-    float:left;
+    float: left;
   }
   div {
     line-height: $head-height - $pad*2;
@@ -60,7 +60,7 @@ $pad: 8px;
     color: #fff;
     border-left: 1px solid #FFF;
     font-size: $head-height * (3/8);
-    float:left;
+    float: left;
   }
 }
 
@@ -80,5 +80,21 @@ $pad: 8px;
   bottom: $abs;
   left: $abs;
   line-height: $head-footer;
-  font-size: $head-height/8;
+  font-size: 14px;
+}
+
+.login-form {
+  width: 444px;
+  //padding: 42px 50px 57px;
+  margin: 40px 100px auto auto;
+}
+
+.login-user-icon {
+  background: url(../../assets/images/user-icon.png) 7px center no-repeat;
+  padding-left: 30px;
+}
+
+.login-passwd-icon {
+  background: url(../../assets/images/passwd-icon.png) 7px center no-repeat;
+  padding-left: 30px;
 }

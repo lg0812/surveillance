@@ -1,7 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ErrorComponent} from './error/error.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './user/login/login.component';
+import {ResetComponent} from './user/reset/reset.component';
+import {RegisterComponent} from './user/register/register.component';
+import {UserComponent} from './user/user.component';
 import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {RequestResultComponent} from './demo/request.result/request.result';
@@ -37,8 +40,18 @@ const appRoutes: Routes = [
     component: SuperviseComponent,
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'user',
+    component: UserComponent,
+    children: [{
+      path: 'login',
+      component: LoginComponent
+    }, {
+      path: 'reset',
+      component: ResetComponent
+    }, {
+      path: 'register',
+      component: RegisterComponent
+    }]
   },
   // 当所请求的URL不匹配前面定义的路由表中的任何路径时，路由器就会选择此路由
   {
