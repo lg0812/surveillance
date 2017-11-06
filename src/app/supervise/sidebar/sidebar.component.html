@@ -1,0 +1,15 @@
+<div class="w-100 h-100" style="background-color: #2E3137">
+  <div class="d-flex justify-content-center w-100"><img src="../../../assets/images/logo.png"></div>
+  <ul className="flex-column  w-100 pd0 transform-height" *ngFor="let menu of menus">
+    <li className="self-sub-hover fc-white">
+      <span className="fa fa-eercast mgr10" style="color: #fff">{{menu.menuName}}</span>
+
+      <ul className="flex-column  w-100 pd0 transform-height" *ngFor="let sub of menu.subs">
+        <li className="self-sub-hover fc-white">
+          <span className="fa fa-eercast mgr10" style="color: #fff">{{sub.menuName}}</span>
+        </li>
+      </ul>
+
+    </li>
+  </ul>
+</div>

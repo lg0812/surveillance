@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   // 空路径（''）表示应用的默认路径，当URL为空时就会访问那里，因此它通常会作为起点。 这个默认路由会重定向到URL /login
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/user/login',
     pathMatch: 'full'
   },
   // 跳转到request页面

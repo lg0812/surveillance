@@ -8,6 +8,7 @@ import {RegisterComponent} from './user/register/register.component';
 import {ResetComponent} from './user/reset/reset.component';
 import {UserComponent} from './user/user.component';
 import {SuperviseComponent} from './supervise/supervise.component';
+import {SideBarComponent} from './supervise/sidebar/sidebar.component';
 import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {LoginReducerComponent} from './demo/reducer/reducer.component';
@@ -28,6 +29,7 @@ import {loginReducer} from './reducer/loginReducer';
     ResetComponent,
     UserComponent,
     RegisterComponent,
+    SideBarComponent,
     //from demo
     BdMapComponent,
     RequestComponent,
