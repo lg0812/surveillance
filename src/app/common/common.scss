@@ -119,3 +119,25 @@
 .fc-white {
   color: #fff;
 }
+
+.b-arrow {
+  margin-bottom: 8px;
+  border: 1px solid #fff;
+  background: transparent;
+  height: 12px;
+  width: 12px;
+  transform: rotate(+45deg);
+  border-top: none;
+  border-left: none;
+}
+
+.t-arrow {
+  margin-top: 8px;
+  border: 1px solid red;
+  background: transparent;
+  height: 12px;
+  width: 12px;
+  transform: rotate(-135deg);
+  border-top: none;
+  border-left: none;
+}

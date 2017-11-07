@@ -1,5 +1,6 @@
 $line-height: 30px;
-$border-width: 4px;
+$border-width: 3px;
+$menu-active-color: #2185E9;
 .menu-line-height {
   line-height: $line-height;
 }
@@ -21,15 +22,23 @@ $border-width: 4px;
 
 .menu-padding {
   padding: 0px 40px;
-
+  outline: none;
+  user-select: none;
 }
 
 .menu-padding-sub {
   box-sizing: content-box;
   padding: 0px 40px;
+  outline: none;
+  user-select: none;
+}
+
+.menu-active-color {
+  color: $menu-active-color;
 }
 
 .menu-active {
-  border-left: $border-width crimson solid;
+  border: none;
+  border-left: $border-width $menu-active-color solid;
   left: 0px;
 }
