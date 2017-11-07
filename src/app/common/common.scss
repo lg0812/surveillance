@@ -70,7 +70,7 @@
   align-items: center !important;
 }
 
-.table-width {
+.text-width {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -110,4 +110,12 @@
 
 .pd0 {
   padding: 0px;
+}
+
+.dis-block {
+  display: block;
+}
+
+.fc-white {
+  color: #fff;
 }

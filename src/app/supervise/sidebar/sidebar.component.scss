@@ -1,0 +1,35 @@
+$line-height: 30px;
+$border-width: 4px;
+.menu-line-height {
+  line-height: $line-height;
+}
+
+.menus-more {
+  width: 20px;
+  height: 20px;
+  right: 0px;
+  top: 5px;
+
+}
+
+.menus-icon {
+  width: 20px;
+  height: 20px;
+  left: 0px;
+  top: 5px;
+}
+
+.menu-padding {
+  padding: 0px 40px;
+
+}
+
+.menu-padding-sub {
+  box-sizing: content-box;
+  padding: 0px 40px;
+}
+
+.menu-active {
+  border-left: $border-width crimson solid;
+  left: 0px;
+}

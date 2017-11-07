@@ -5,19 +5,21 @@ import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'side-bar',
-  templateUrl: './sidebar.component.html'
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SideBarComponent implements OnInit {
   menus: object[] = [{
-    "menuImg": "abc", menuName: "abc", subs: [
-      {"menuImg": "abc", menuName: "subabc"},
-      {"menuImg": "abc", menuName: "subabc"}
-    ]
+    "menuImg": "../../../assets/images/setting.png", menuName: "abc", subs: [
+      {"menuImg": "../../../assets/images/setting.png", menuName: "subabc", active: false, path: "/supervise/order"},
+      {"menuImg": "../../../assets/images/setting.png", menuName: "subabc", active: true, path: "/supervise/service"}
+    ],
+    active: true
   }, {
-    "menuImg": "abc", menuName: "abc", subs: [
-      {"menuImg": "abc", menuName: "subabc"},
-      {"menuImg": "abc", menuName: "subabc"}
-    ]
+    "menuImg": "../../../assets/images/setting.png", menuName: "abc", subs: [
+      {"menuImg": "../../../assets/images/setting.png", menuName: "subabc", active: false, path: "/supervise"},
+      {"menuImg": "../../../assets/images/setting.png", menuName: "subabc", active: false, path: "/supervise"}
+    ], active: false
   }];
 
 
