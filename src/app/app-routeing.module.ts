@@ -70,8 +70,7 @@ const appRoutes: Routes = [
     }, {
       path: 'systemCtrl',
       component: SystemCtrlComponent
-    }
-    ]
+    }]
   },
   {
     path: 'user',
@@ -95,7 +94,7 @@ const appRoutes: Routes = [
   {
     path: '**',
     component: ErrorComponent
-  }]
+  }];
 
 
 @NgModule({

@@ -28,6 +28,8 @@ import {reducer} from './reducer';
 import {StoreModule} from '@ngrx/store';
 import {loginReducer} from './reducer/loginReducer';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+
 @NgModule({
   // 组件
   declarations: [
@@ -55,10 +57,11 @@ import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
     HeaderComponent
   ],
   imports: [
-    BsDropdownModule.forRoot({ autoClose: true }),
     BrowserModule,
     HttpModule,
     AppRoutingModule,
+    BsDropdownModule.forRoot({autoClose: true}),
+    BsDatepickerModule.forRoot(),
     StoreModule.provideStore(reducer)
   ],
   // 服务

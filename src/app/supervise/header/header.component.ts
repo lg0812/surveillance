@@ -18,12 +18,19 @@ export class HeaderComponent implements OnInit {
     $event.preventDefault();
     $event.stopPropagation();
     this.status.isopen = !this.status.isopen;
+    this.status.searchOpen = false;
   }
 
   toggleDropdownSearch($event: MouseEvent): void {
     $event.preventDefault();
     $event.stopPropagation();
     this.status.searchOpen = !this.status.searchOpen;
+    this.status.isopen = false;
+  }
+
+  stopPop($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
   }
 
   change(value: boolean): void {
