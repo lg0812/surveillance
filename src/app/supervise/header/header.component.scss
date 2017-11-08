@@ -1,0 +1,36 @@
+$pad: 15px;
+.search-input {
+  width: 50% !important;
+  margin: 0 auto;
+}
+
+.right0 {
+  right: 0px;
+}
+
+.top0 {
+  top: $pad;
+}
+
+.mr {
+  margin-right: $pad;
+}
+
+.pdx {
+  padding: $pad;
+}
+
+.header-user-info {
+
+  > div {
+    line-height: 30px;
+  }
+  > img {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    outline: none;
+  }
+}
+
+

@@ -11,6 +11,7 @@ import {SuperviseComponent} from './supervise/supervise.component';
 import {OrderComponent} from './supervise/order/order.component';
 import {ServiceComponent} from './supervise/service/service.component';
 import {SideBarComponent} from './supervise/sidebar/sidebar.component';
+import {HeaderComponent} from './supervise/header/header.component';
 import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {LoginReducerComponent} from './demo/reducer/reducer.component';
@@ -38,7 +39,8 @@ import {loginReducer} from './reducer/loginReducer';
     BdMapComponent,
     RequestComponent,
     RequestResultComponent,
-    LoginReducerComponent
+    LoginReducerComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
