@@ -9,9 +9,15 @@ import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {RequestResultComponent} from './demo/request.result/request.result';
 import {SuperviseComponent} from './supervise/supervise.component';
+import {UserAuthComponent} from './supervise/userAuth/userAuth.component';
+import {PylonAuthComponent} from './supervise/pylonAuth/pylonAuth.component';
 import {OrderComponent} from './supervise/order/order.component';
 import {ServiceComponent} from './supervise/service/service.component';
 import {LoginReducerComponent} from './demo/reducer/reducer.component';
+import {DeviceComponent} from './supervise/device/device.component';
+import {NetComponent} from './supervise/net/net.component';
+import {ServiceCtrlComponent} from './supervise/serviceCtrl/serviceCtrl.component';
+import {SystemCtrlComponent} from './supervise/systemCtrl/systemCtrl.component';
 const appRoutes: Routes = [
   // 空路径（''）表示应用的默认路径，当URL为空时就会访问那里，因此它通常会作为起点。 这个默认路由会重定向到URL /login
   {
@@ -41,11 +47,29 @@ const appRoutes: Routes = [
     path: 'supervise',
     component: SuperviseComponent,
     children: [{
+      path: 'userAuth',
+      component: UserAuthComponent
+    }, {
+      path: 'pylonAuth',
+      component: PylonAuthComponent
+    }, {
       path: 'order',
       component: OrderComponent
     }, {
       path: 'service',
       component: ServiceComponent
+    }, {
+      path: 'device',
+      component: DeviceComponent
+    }, {
+      path: 'serviceCtrl',
+      component: ServiceCtrlComponent
+    }, {
+      path: 'net',
+      component: NetComponent
+    }, {
+      path: 'systemCtrl',
+      component: SystemCtrlComponent
     }
     ]
   },

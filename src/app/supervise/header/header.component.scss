@@ -8,6 +8,10 @@ $pad: 15px;
   right: 0px;
 }
 
+.top-0 {
+  top: 0px;
+}
+
 .top0 {
   top: $pad;
 }
@@ -22,15 +26,20 @@ $pad: 15px;
 
 .header-user-info {
 
-  > div {
+  .lh {
     line-height: 30px;
   }
-  > img {
+  img {
     height: 30px;
     width: 30px;
     border-radius: 50%;
     outline: none;
   }
+}
+
+.dropdown-menu-right {
+  right: $pad;
+  left: auto;
 }
 
 

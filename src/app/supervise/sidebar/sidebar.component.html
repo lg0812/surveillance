@@ -3,10 +3,13 @@
 
   <div class="pd0 menu-line-height pointer"
        *ngFor="let menu of menus; index as i; first as isFirst;">
-    <div class="text-width position-relative fc-white menu-padding" (click)="toggleMenu($event,i)">
+    <div
+      class="{{'text-width position-relative fc-white menu-padding ' + ((!menu.subs && menu.active) ?  ' menu-active-color':'') }}"
+      (click)="toggleMenu(menu.path,i)">
+      <div class="{{((!menu.subs && menu.active)? 'menu-active ' :'') + ' position-absolute h-100' }}"></div>
       <img src="{{menu.menuImg}}" class="menus-icon position-absolute"/>
-      {{menu.menuName+i}}
-      <div class="menus-more position-absolute" style="font-size: 12px;">
+      {{menu.menuName}}
+      <div class="menus-more position-absolute" style="font-size: 12px;" *ngIf="menu.subs">
         <div class="{{menu.active ? 'glyphicon glyphicon-triangle-top':'glyphicon glyphicon-triangle-bottom' }}">
         </div>
       </div>
@@ -14,7 +17,7 @@
 
     <div class="pd0" *ngIf="menu.active">
       <div *ngFor="let sub of menu.subs ;index as j; first as isSubFirst;" routerLink="{{sub.path}}"
-           (click)="toggleMenu($event,i,j)"
+           (click)="toggleMenu(null,i,j)"
            class="{{'text-width position-relative fc-white menu-padding-sub '+(sub.active ? ' menu-active-color':'')}}">
         <div class="{{(sub.active? 'menu-active ' :'') + ' position-absolute h-100' }}"></div>
         {{sub.menuName}}

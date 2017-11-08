@@ -16,12 +16,18 @@ import {RequestComponent} from './demo/request/request';
 import {BdMapComponent} from './demo/map/map';
 import {LoginReducerComponent} from './demo/reducer/reducer.component';
 import {RequestResultComponent} from './demo/request.result/request.result';
+import {UserAuthComponent} from './supervise/userAuth/userAuth.component';
+import {PylonAuthComponent} from './supervise/pylonAuth/pylonAuth.component';
+import {DeviceComponent} from './supervise/device/device.component';
+import {NetComponent} from './supervise/net/net.component';
+import {ServiceCtrlComponent} from './supervise/serviceCtrl/serviceCtrl.component';
+import {SystemCtrlComponent} from './supervise/systemCtrl/systemCtrl.component';
 import {Req} from './common/req';
 import {AppRoutingModule} from './app-routeing.module';
 import {reducer} from './reducer';
 import {StoreModule} from '@ngrx/store';
 import {loginReducer} from './reducer/loginReducer';
-
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 @NgModule({
   // 组件
   declarations: [
@@ -35,6 +41,12 @@ import {loginReducer} from './reducer/loginReducer';
     SideBarComponent,
     OrderComponent,
     ServiceComponent,
+    UserAuthComponent,
+    PylonAuthComponent,
+    DeviceComponent,
+    NetComponent,
+    ServiceCtrlComponent,
+    SystemCtrlComponent,
     //from demo
     BdMapComponent,
     RequestComponent,
@@ -43,6 +55,7 @@ import {loginReducer} from './reducer/loginReducer';
     HeaderComponent
   ],
   imports: [
+    BsDropdownModule.forRoot({ autoClose: true }),
     BrowserModule,
     HttpModule,
     AppRoutingModule,

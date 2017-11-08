@@ -9,9 +9,28 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  results: string[];
-
+  status: { isopen: boolean, searchOpen: boolean } = {isopen: false, searchOpen: false};
 
   ngOnInit(): void {
+  }
+
+  toggleDropdown($event: MouseEvent): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.status.isopen = !this.status.isopen;
+  }
+
+  toggleDropdownSearch($event: MouseEvent): void {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.status.searchOpen = !this.status.searchOpen;
+  }
+
+  change(value: boolean): void {
+    this.status.isopen = value;
+  }
+
+  changeSearch(value: boolean): void {
+    this.status.searchOpen = value;
   }
 }
