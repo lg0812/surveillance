@@ -20,7 +20,7 @@
 
 /** IE9, IE10 and IE11 requires all of the following polyfills. **/
 import 'core-js/es6/symbol';
-import 'core-js/client/shim.js';
+import 'core-js/client/shim.min.js';
 import 'core-js/es6/object';
 import 'core-js/es6/function';
 import 'core-js/es6/parse-int';
@@ -51,7 +51,7 @@ import 'core-js/es7/reflect';
  * Required to support Web Animations `@angular/platform-browser/animations`.
  * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
  **/
-// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
 
 
