@@ -1,1 +1,313 @@
-用户审核：userAuth
+<div class="d-flex flex-column h-100">
+  <app-header class="flex-grow0" (searchHandler)="searchHandler($event)" [options]="options"></app-header>
+  <div class="flex-grow1 d-flex  w-100 flex-row position-relative">
+    <div class="position-absolute all0 pdlf">
+      <ul class="nav nav-tabs">
+
+        <li role="presentation" class="{{(curTabs == 0) ? 'active' : ''}}">
+          <a (click)="exchangeHeader(0)"
+             class="{{(curTabs == 0) ? 'active-b ':''}}">待处理审核</a>
+        </li>
+
+        <li role="presentation" class="{{(curTabs == 1) ? 'active' : ''}}">
+          <a (click)="exchangeHeader(1)"
+             class="{{(curTabs == 1) ? 'active-b ':''}}">已处理审核</a>
+        </li>
+
+        <li role="presentation" class="{{(curTabs == 2) ? ' active ' : ' hide '}}">
+          <a (click)="exchangeHeader(2)"
+             class="{{(curTabs == 2) ? 'active-b':''}}">搜索结果
+            <span class="pointer"
+                  style="margin-left: 15px;" stop
+                  (click)="closeSearchResultPanel()">X</span></a>
+        </li>
+      </ul>
+      <!--第一页-->
+      <div *ngIf="curTabs == 0" class="position-absolute all0" style="top: 42px;left:15px;right:15px;">
+        <div class="w-100"><a class="btn btn-primary pull-right no-radius btn-blue"
+                              style="margin: 15px 0 10px auto;" (click)="exportUnauditedExcel()">导出excel</a>
+        </div>
+        <div class="w-1000"></div>
+        <table class="table table-hover table-self ">
+          <thead>
+          <tr>
+            <th msort [options]="options_sort">序号</th>
+            <th msort [options]="options_sort">企业/组织全称</th>
+            <th msort [options]="options_sort">注册时间</th>
+          </tr>
+          </thead>
+        </table>
+        <div class="all0 position-absolute no-scrollbar"
+             style="top: 107px;left: 0px;right: 0px;bottom: 100px;">
+          <table class="table table-hover table-self">
+            <tbody>
+            <tr *ngFor="let item of list; index as i;" (click)="userDetails(item)">
+              <td>{{i}}</td>
+              <td>{{item.userInfo ? item.userInfo.nickName:''}}</td>
+              <td>{{item.userInfo ? item.userInfo.email:''}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="position-fixed" style="bottom: 0px;right: 15px;">
+          <div class="row">
+            <div class="col-xs-12 col-12">
+              <pagination previousText="上一页" nextText="下一页" [totalItems]="pageComponent.bigTotalItems"
+                          [(ngModel)]="pageComponent.bigCurrentPage"
+                          [maxSize]="pageComponent.maxSize"
+                          class="pagination-sm"
+                          (pageChanged)="pageChanged($event)"
+                          [boundaryLinks]="false" [rotate]="false"></pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--第二页-->
+      <div *ngIf="curTabs == 1" class="position-absolute all0" style="top: 42px;left:15px;right:15px;">
+        <div class="w-100"><a class="btn btn-primary pull-right no-radius btn-blue"
+                              style="margin: 15px 0 10px auto;" (click)="exportUnauditedExcel()">导出excel</a>
+        </div>
+        <div class="w-1000"></div>
+        <table class="table table-hover table-self-2 ">
+          <thead>
+          <tr>
+            <th>序号</th>
+            <th>企业/组织全称</th>
+            <th>注册时间</th>
+            <th>状态</th>
+          </tr>
+          </thead>
+        </table>
+        <div class="all0 position-absolute no-scrollbar"
+             style="top: 107px;left: 0px;right: 0px;bottom: 100px;">
+          <table class="table table-hover table-self-2">
+            <tbody>
+            <tr *ngFor="let item of list; index as i;" (click)="userDetails(item)">
+              <td>{{i}}</td>
+              <td>{{item.userInfo ? item.userInfo.nickName:''}}</td>
+              <td>{{item.userInfo ? item.userInfo.email:''}}</td>
+              <td>{{item.userInfo ? item.userInfo.email:''}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="position-fixed" style="bottom: 0px;right: 15px;">
+          <div class="row">
+            <div class="col-xs-12 col-12">
+              <pagination previousText="上一页" nextText="下一页" [totalItems]="pageComponent.bigTotalItems"
+                          [(ngModel)]="pageComponent.bigCurrentPage"
+                          [maxSize]="pageComponent.maxSize"
+                          class="pagination-sm"
+                          (pageChanged)="pageChanged($event)"
+                          [boundaryLinks]="false" [rotate]="false"></pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--第三页-->
+      <div *ngIf="curTabs == 4 || curTabs == 2" class="position-absolute all0" style="top: 57px;left:15px;right:15px;">
+        <div class="d-flex w-100 h-100 justify-content-around">
+          <div class="position-relative" style="width:25%">
+            <table class="table table-hover table-self fix-table-width">
+              <thead>
+              <tr>
+                <th>序号</th>
+                <th>企业/组织名称</th>
+              </tr>
+              </thead>
+            </table>
+            <div class="all0 position-absolute no-scrollbar"
+                 style="top: 47px;left: 0px;right: 0px;bottom: 60px;">
+              <table class="table table-hover table-self">
+                <tbody>
+                <tr *ngFor="let item of list; index as i;">
+                  <td>{{i}}</td>
+                  <td>{{item.userInfo ? item.userInfo.nickName:''}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="position-relative" style="width: 75%;">
+
+            <div class="all0 position-absolute"
+                 style="margin-left: 60px;border: 1px solid #ddd;bottom: 15px;">
+              <div (click)="curTabs=0;" class="pull-btn">
+                <div class="triangle-left"></div>
+              </div>
+              <div class="all0 position-absolute"
+                   style="right:0px;bottom: 50px;background-color: #F8F8F8;padding-right: 15px;padding-left: 15px;">
+                <ul class="nav nav-tabs">
+                  <li role="presentation" class="{{(newAccoutTab == 0) ? 'active' : ''}}">
+                    <a (click)="exchange(0)"
+                       class="{{(newAccoutTab == 0) ? 'active-a ':''}}">用户</a>
+                  </li>
+
+                  <li role="presentation" class="{{(newAccoutTab == 1) ? 'active' : ''}}">
+                    <a (click)="exchange(1)"
+                       class="{{(newAccoutTab == 1) ? 'active-a ':''}}">企业/组织</a>
+                  </li>
+
+                  <li role="presentation" class="{{(newAccoutTab == 2) ? 'active' : ''}}">
+                    <a (click)="exchange(2)"
+                       class="{{(newAccoutTab == 2) ? 'active-a ':''}}">监管单位</a>
+                  </li>
+                </ul>
+
+                <div class="no-scrollbar position-absolute all0" *ngIf="newAccoutTab == 0"
+                     style="top:42px;left: 15px;right: 15px;padding-top: 15px;">
+                  <div style="font-size: 12px;line-height: 24px;padding-bottom: 10px;">
+                    <div class="row">
+                      <div class="col-xs-6">
+                        真实姓名：<span>张三</span>
+                      </div>
+                      <div class="col-xs-6">
+                        手机号码：<span>11111</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        证件类型：<span>11111</span>
+                      </div>
+                      <div class="col-xs-6">
+                        证件号码：<span>11111</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        邮箱：<span>11111</span>
+                      </div>
+                      <div class="col-xs-6">
+                        用户名：<span>11111</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        省：<span>11111</span>
+                      </div>
+                      <div class="col-xs-6">
+                        市：<span>11111</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 split-line">
+                      证照扫描件
+                    </div>
+                    <div class="col-xs-12 ptb">
+                      <img src="" style="width: 300px;height: 200px;border: 1px solid #ddd;border-radius: 4px;">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 split-line">
+                      审核说明
+                    </div>
+                    <div class="col-xs-12 ptb">
+                     <textarea class="w-100" style="height: 200px;border: 1px solid #ddd;">asdafs
+                     </textarea>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="no-scrollbar position-absolute all0 vertical-align-middle" *ngIf="newAccoutTab == 1"
+                     style="top:42px;left: 15px;right: 15px;padding-top: 15px;">
+                  <div style="font-size: 12px;line-height: 24px;padding-bottom: 10px;">
+                    <div class="row">
+                      <div class="col-xs-6">
+                        企业法人/组织负责人：<span>张三</span>
+                      </div>
+                      <div class="col-xs-6">
+                        企业/组织全称：<span>11111</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        企业/组织简称：<span>11111</span>
+                      </div>
+                      <div class="col-xs-6">
+                        企业/组织地址：<span>11111</span>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-12 split-line">
+                        企业/组织logo
+                      </div>
+                      <div class="col-xs-12 ptb">
+                        <img src="" style="width: 200px;height: 200px;border: 1px solid #ddd;border-radius: 4px;">
+                      </div>
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-xs-12 split-line">
+                        企业营业执照/组织介绍信
+                      </div>
+                      <div class="col-xs-12 ptb">
+                        <img src="" style="width: 200px;height: 200px;border: 1px solid #ddd;border-radius: 4px;">
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+
+                <div class="no-scrollbar position-absolute all0 vertical-align-middle" *ngIf="newAccoutTab == 2"
+                     style="top:42px;left: 15px;right: 15px;padding-top: 15px;">
+                  <div style="font-size: 12px;line-height: 24px;padding-bottom: 10px;">
+                    <div class="row">
+                      <div class="col-xs-6">
+                        监管单位所在系统：<span>张三</span>
+                      </div>
+                      <div class="col-xs-6">
+                        监管单位所在组织机构：<span>11111</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        组织负责人：<span>11111</span>
+                      </div>
+                      <div class="col-xs-6">
+                        单位全称：<span>11111</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        单位简称：<span>11111</span>
+                      </div>
+                      <div class="col-xs-6">
+                        单位地址：<span>11111</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12 split-line">
+                        企业营业执照/组织介绍信
+                      </div>
+                      <div class="col-xs-12 ptb">
+                        <img src="" style="width: 200px;height: 200px;border: 1px solid #ddd;border-radius: 4px;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="position-absolute" style="left: 0;right: 0; bottom: 0px;height: 50px;background-color: #fff">
+                <div class="d-flex justify-content-center w-100 h-100 align-items-center">
+                  <div>
+                    <button class="btn btn-primary btn-sm"
+                            style="margin-right: 15px;background-color: #F0506E;border: 1px solid #F0506E">审核拒绝
+                    </button>
+                    <button class="btn btn-primary btn-sm">审核通过</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

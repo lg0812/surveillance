@@ -1,1 +1,201 @@
-设备管理：device
+<div class="device-body">
+  <app-header style="position:fixed;width: calc(95% - 200px);background:#fff;border-bottom: 1px solid #e5e6e7;" class="flex-grow0"></app-header>
+  <div class="clean-fixed-section" style="height: 64px;"></div>
+  <div class="d-main">
+    <tabset style="position:fixed;width: calc(95% - 190px);background:#fff;" #staticTabs>
+      <tab heading="闲置设备">
+        <div *ngIf="!show" class="d-list">
+          <div class="d-content">
+            <div class="d-btns">
+              <button (click)="show=true;" class="btn btn-primary fr add-btn">新增设备</button>
+              <button class="btn btn-primary fr export-btn">导入Excel
+                <input type="file" multiple="multiple" id="file" accept=""  />
+              </button>
+              <div class="clear"></div>
+            </div>
+            <div class="d-table">
+              <table style="margin-bottom:0px;" class="table table-hover">
+                <thead>
+                  <th>序号</th>
+                  <th>设备编号</th>
+                  <th>设备SN号</th>
+                  <th>设备类型</th>
+                  <th>创建时间</th>
+                  <th>状态</th>
+                </thead>
+              </table>
+
+            </div>
+          </div>
+        </div>
+        <div style="display:none;" *ngIf="show" class="d-add">
+          <div class="d-leftCon fl">
+            <div class="d-table">
+              <table class="table-hover">
+                <thead>
+                <th>序号</th>
+                <th>设备编号</th>
+                </thead>
+                <tbody>
+                <tr><td>1</td><td>GBJC-001-01</td></tr>
+                <tr><td>2</td><td>GBJC-001-02</td></tr>
+                <tr><td>3</td><td>GBJC-001-03</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+          <div class="d-rightCon fr">
+            <div (click)="show=false;" class="pull-btn">
+              <div class="triangle-left"></div>
+            </div>
+            <div class="d-form">
+              <div class="de-info">
+                <div class="d-info-title">设备信息</div>
+                <label class="d-label">
+                  <span class="title">*设备编号</span>
+                  <input (focus)="errNMFlag=false;" [ngClass]="{'d-alert': errNMFlag}" [(ngModel)]="addDeviceInfo.deviceNumber" name="NM" type="text" placeholder="" class="">
+                </label>
+                <label class="d-label">
+                  <span class="title">*设备类型</span>
+                  <select name="type" [(ngModel)]="addDeviceInfo.deviceType">
+                    <option value ="1">无人机管制设备</option>
+                    <option value ="0">无人机侦测设备</option>
+                  </select>
+                </label>
+                <label class="d-label">
+                  <span class="title">*设备来源</span>
+                  <select name="source" [(ngModel)]="addDeviceInfo.deviceSource" >
+                    <option value="中交遥感">中交遥感</option>
+                  </select>
+                </label>
+                <label class="d-label">
+                  <span class="title">*设备状态</span>
+                  <select name="deviceStatus" [(ngModel)]="addDeviceInfo.deviceStatus">
+                    <option value ="0">在库</option>
+                    <option value ="1">报废</option>
+                    <option value="2">工程</option>
+                    <option value="3">在网</option>
+                    <option value="4">维修</option>
+                    <option value="5">服务结束</option>
+                  </select>
+                </label>
+                <label class="d-label">
+                  <span class="title">*设备责任人姓名</span>
+                  <input (focus)="errOwnerFlag=false;" [ngClass]="{'d-alert': errOwnerFlag}" [(ngModel)]="addDeviceInfo.contactMan" name="owner" type="text" placeholder="" class="">
+                </label>
+                <label class="d-label">
+                  <span class="title">*设备责任人联系方式</span>
+                  <input (focus)="errContactFlag=false;" [ngClass]="{'d-alert': errContactFlag}" [(ngModel)]="addDeviceInfo.contactMobile" name="contact" type="text" placeholder="" class="">
+                </label>
+              </div>
+              <div class="order-info">
+                <div class="d-info-title">订单信息</div>
+                <label class="d-label">
+                  <span class="title">*订单编号</span>
+                  <input (focus)="errOrderNumFlag=false;" [ngClass]="{'d-alert': errOrderNumFlag}" [(ngModel)]="addDeviceInfo.orderNum" name="orderNum" type="text" placeholder="" class="">
+                </label>
+                <label class="d-label">
+                  <span class="title">*用户单位</span>
+                  <input (focus)="errUserFlag=false;" [ngClass]="{'d-alert': errUserFlag}" [(ngModel)]="addDeviceInfo.user" name="user" type="text">
+                </label>
+                <label class="d-label">
+                  <span class="title">*开始服务日期</span>
+                  <input bsDatepicker [bsConfig]="bsConfig" (focus)="errStartDateFlag=false;" [ngClass]="{'d-alert': errStartDateFlag}" [(ngModel)]="addDeviceInfo.startDate" name="startDate" type="text">
+                </label>
+                <label class="d-label">
+                  <span class="title">*结束服务日期</span>
+                  <input bsDatepicker [bsConfig]="bsConfig" (focus)="errEndDateFlag=false;" [ngClass]="{'d-alert': errEndDateFlag}"[(ngModel)]="addDeviceInfo.endDate" name="endDate" type="text">
+                </label>
+              </div>
+              <div class="d-info-title">备注</div>
+            </div>
+            <div class="d-btn fr">
+              <button (click)="show=false;" class="d-cancle">取消</button>
+              <button (click)="addDevice()" class="d-save">保存</button>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </tab>
+
+      <tab style="display:none;" heading="服役设备">
+        <div class="d-list d-out">
+          <div class="d-content">
+            <div class="d-table">
+              <table class="table table-hover table-self fix-table-width">
+                <thead>
+                <th>序号</th>
+                <th>设备编号</th>
+                <th>塔站编号</th>
+                <th>设备SN号</th>
+                <th>设备类型</th>
+                <th>创建时间</th>
+                <th>状态</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of serviceList">
+                  <td>{{item.id}}</td>
+                  <td>{{item.deviceNumber}}</td>
+                  <td>{{item.deviceSN}}</td>
+                  <td>{{item.towerNum}}</td>
+                  <td>{{item.deviceType == 1 ? "无人机管制设备" :"无人机侦测设备"}}</td>
+                  <td>{{item.instorageTime}}</td>
+                  <td [ngClass]="{'red': item.deviceStatus == 1 || item.deviceStatus == 4 || item.deviceStatus == 5,'blue':item.deviceStatus == 2,'green':item.deviceStatus ==3}">
+                    {{changeDeviceType(item.deviceStatus)}}
+                  </td>
+                </tr>
+                <!--<tr>-->
+                  <!--<td>1</td>-->
+                  <!--<td>GBJC-001-01</td>-->
+                  <!--<td>8938372884</td>-->
+                  <!--<td>8938372884</td>-->
+                  <!--<td>无人机侦测设备</td>-->
+                  <!--<td>2017/09/08 12:20:09</td>-->
+                  <!--<td>未上塔</td>-->
+                <!--</tr>-->
+                </tbody>
+              </table>
+              <div class="d-page">
+                <div class="col-md-12">
+                  <pagination previousText="上一页" nextText="下一页" [totalItems]="serviceTotalItems" [itemsPerPage]="itemsPerPage" class="pagination-sm"
+                              [boundaryLinks]="false" [rotate]="false" (pageChanged)="queryServerDevice($event)"></pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+    <div class="clean-fixed-section"></div>
+
+    <div style="margin-top:10px;" class="">
+      <table style="margin-bottom:0px;" class="table table-hover">
+        <tbody>
+        <tr *ngFor="let item of idleList">
+          <td>{{item.id}}</td>
+          <td>{{item.deviceNumber}}</td>
+          <td>{{item.deviceSN}}</td>
+          <td>{{item.deviceType == 1 ? "无人机管制设备" :"无人机侦测设备"}}</td>
+          <td>{{item.instorageTime}}</td>
+          <td [ngClass]="{'red': item.deviceStatus == 1}">{{changeDeviceType(item.deviceStatus)}}</td>
+        </tr>
+        <!--<tr>-->
+        <!--<td>2</td>-->
+        <!--<td>GBJC-001-02</td>-->
+        <!--<td>8938372884</td>-->
+        <!--<td>无人机侦测设备</td>-->
+        <!--<td>2017/09/08 12:20:09</td>-->
+        <!--<td>未上塔</td>-->
+        <!--</tr>-->
+        </tbody>
+      </table>
+      <div class="d-page fr" style="margin-top: -5px;">
+        <pagination previousText="上一页" nextText="下一页" [totalItems]="idleTotalItems" [itemsPerPage]="itemsPerPage" class="pagination-sm"
+                    [boundaryLinks]="false" [rotate]="false" (pageChanged)="queryIdleDevice($event)"></pagination>
+        <!--<div class="col-md-12"></div>-->
+      </div>
+    </div>
+
+  </div>
+</div>

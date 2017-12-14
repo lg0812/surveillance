@@ -1,1 +1,261 @@
-服务管理：serviceCtrl
+<div class="sCtrl-body">
+  <app-header class="flex-grow0"></app-header>
+  <div class="d-main">
+    <tabset #staticTabs>
+      <tab heading="未开始服务">
+        <div class="d-list ">
+          <div class="d-content">
+            <div class="d-table">
+              <table class="table table-hover">
+                <thead>
+                  <th>序号</th>
+                  <th>企业/组织名称</th>
+                  <th>订单编号</th>
+                  <th>服务开始日期</th>
+                  <th>服务结束日期</th>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>无锡无线电管理委员会</td>
+                  <td>D2017080151001001</td>
+                  <td>2017/09/08 12:20:09</td>
+                  <td>2019/09/08 12:20:09</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>无锡无线电管理委员会</td>
+                  <td>D2017080151001001</td>
+                  <td>2017/09/08 12:20:09</td>
+                  <td>2019/09/08 12:20:09</td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="d-page">
+                <div class="col-md-12">
+                  <pagination previousText="上一页" nextText="下一页" [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+                              [boundaryLinks]="false" [rotate]="false" (numPages)="numPages = $event" (pageChanged)="pageChanged($event)"></pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+      <tab heading="服务中">
+        <div *ngIf="!show" class="d-list">
+          <div class="d-content">
+            <div class="d-table">
+              <table class="table table-hover">
+                <thead>
+                <th>序号</th>
+                <th>企业/组织名称</th>
+                <th>订单编号</th>
+                <th>服务开始日期</th>
+                <th>服务结束日期</th>
+                <th>操作</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of inServiceList">
+                  <td>{{item.id}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.orderId}}</td>
+                  <td>{{item.startDate}}</td>
+                  <td>{{item.endDate}}</td>
+                  <td><a (click)="show=true;" class="renew-btn">{{item.operate}}</a></td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="d-page">
+                <div class="col-md-12">
+                  <pagination previousText="上一页" nextText="下一页" [totalItems]="bigTotalItems" [(ngModel)]="outBigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+                              [boundaryLinks]="false" [rotate]="false" (numPages)="outNumPages = $event" (pageChanged)="outPageChanged($event)"></pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="show" class="d-add">
+          <div class="d-leftCon fl">
+            <div class="d-table">
+              <table class="table table-hover">
+                <thead>
+                <th>序号</th>
+                <th>企业/组织名称</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of inServiceList">
+                  <td>{{item.id}}</td>
+                  <td>{{item.name}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+          <div class="d-rightCon fr">
+            <div (click)="show=false;" class="pull-btn">
+              <div class="triangle-left"></div>
+            </div>
+            <div class="d-form sev-detail">
+              <ul style="width:100%;" class="nav nav-tabs">
+                <li (click)="detailInfo=false;" [ngClass]="{'active': !detailInfo}" class="nav-item">
+                  <a [ngClass]="{'active': !detailInfo}" class="nav-link">
+                    <span>服务信息</span>
+                  </a>
+                </li>
+                <li (click)="detailInfo=true;" [ngClass]="{'active': detailInfo}" class="nav-item" >
+                  <a [ngClass]="{'active': detailInfo}" class="nav-link" >
+                    <span>关联设备</span>
+                  </a>
+                </li>
+              </ul>
+              <div class="serInfo" *ngIf="!detailInfo">
+                <div class="itemDetail">
+                  <p class="fl">
+                    企业/组织名称：
+                    <span>无锡无线电管理委员会</span>
+                  </p>
+                  <p class="fl">
+                    订单编号：
+                    <span>无锡无线电管理委员会</span>
+                  </p>
+                  <p class="fl">
+                    服务开始日期：
+                    <span>2017/09/08</span>
+                  </p>
+                  <p class="fl">
+                    服务结束日期：
+                    <span>2017/09/08</span>
+                  </p>
+                  <div class="clear"></div>
+                </div>
+                <div class="renewOrder">
+                  <div class="title">续约订单</div>
+                  <table class="table table-hover">
+                    <thead>
+                    <th>序号</th>
+                    <th>企业/组织名称</th>
+                    <th>订单编号</th>
+                    <th>服务开始日期</th>
+                    <th>服务结束日期</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>无锡无线电管理委员会</td>
+                      <td>D2017080151001001</td>
+                      <td>2017/09/08 12:20:09</td>
+                      <td>2019/09/08 12:20:09</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>无锡无线电管理委员会</td>
+                      <td>D2017080151001001</td>
+                      <td>2017/09/08 12:20:09</td>
+                      <td>2019/09/08 12:20:09</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="historyOrder">
+                  <div class="title">历史订单</div>
+                  <table class="table table-hover">
+                    <thead>
+                    <th>序号</th>
+                    <th>企业/组织名称</th>
+                    <th>订单编号</th>
+                    <th>服务开始日期</th>
+                    <th>服务结束日期</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>无锡无线电管理委员会</td>
+                      <td>D2017080151001001</td>
+                      <td>2017/09/08 12:20:09</td>
+                      <td>2019/09/08 12:20:09</td>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>无锡无线电管理委员会</td>
+                      <td>D2017080151001001</td>
+                      <td>2017/09/08 12:20:09</td>
+                      <td>2019/09/08 12:20:09</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="ralateInfo d-table" *ngIf="detailInfo">
+                <table class="table table-hover">
+                  <thead>
+                  <th>序号</th>
+                  <th>设备编号</th>
+                  <th>设备SN号</th>
+                  <th>塔站编号</th>
+                  <th>设备类型</th>
+                  <th>状态</th>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of inServiceList">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.orderId}}</td>
+                    <td>{{item.startDate}}</td>
+                    <td>{{item.endDate}}</td>
+                    <td>djddj</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </tab>
+      <tab heading="已停止服务">
+        <div class="d-list">
+          <div class="d-content">
+            <div class="d-table">
+              <table class="table table-hover">
+                <thead>
+                <th>序号</th>
+                <th>企业/组织名称</th>
+                <th>订单编号</th>
+                <th>服务开始日期</th>
+                <th>服务结束日期</th>
+                <th>操作</th>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>无锡无线电管理委员会</td>
+                  <td>D2017080151001001</td>
+                  <td>2017/09/08 12:20:09</td>
+                  <td>2019/09/08 12:20:09</td>
+                  <td>回收</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>无锡无线电管理委员会</td>
+                  <td>D2017080151001001</td>
+                  <td>2017/09/08 12:20:09</td>
+                  <td>2019/09/08 12:20:09</td>
+                  <td>回收</td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="d-page">
+                <div class="col-md-12">
+                  <pagination previousText="上一页" nextText="下一页" [totalItems]="bigTotalItems" [(ngModel)]="outBigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+                              [boundaryLinks]="false" [rotate]="false" (numPages)="outNumPages = $event" (pageChanged)="outPageChanged($event)"></pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>

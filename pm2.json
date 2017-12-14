@@ -1,0 +1,13 @@
+{
+   "apps" : [{
+     "name"        : "uav-ctrs-portal",
+     "script"      : "ng serve",
+     "log_date_format"  : "YYYY-MM-DD HH:mm:SS",
+     "log_file"   : "logs/log.log",
+     "error_file" : "logs/err.log",
+     "out_file"   : "logs/out.log",
+     "pid_file"   : "logs/pid.pid",
+     "exec_mode"  : "cluster_mode",
+     "watch"      :  true
+   }]
+ }

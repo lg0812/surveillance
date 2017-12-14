@@ -3,14 +3,16 @@
  */
 
 import {combineReducers, ActionReducer} from '@ngrx/store';
-import * as loginReducer from "./loginReducer"
+import * as loginRd from "./loginReducer";
+import * as promptRd from "./promptReducer";
 import {environment} from '../../environments/environment';
 // export interface State {
 //   loginRdr: loginReducer.State;
 // }
 
 const reducers = {
-  loginRd: loginReducer.loginReducer,
+  loginRd: loginRd.loginReducer,
+  promptRd: promptRd.promptReducer
 };
 
 const developmentReducer: ActionReducer<any> = combineReducers(reducers);

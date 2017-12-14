@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Rx';
-import {INCREMENT} from '../../reducer/loginReducer';
+import {LOGIN} from '../../reducer/loginReducer';
 
 @Component({
   selector: 'app-login',
@@ -19,14 +19,14 @@ export class LoginReducerComponent implements OnInit {
   ngOnInit(): void {
     this.login.subscribe((state) => {
       this.loginRdInfo = state
-      console.log(this.loginRdInfo,this.store)
+      console.log(this.loginRdInfo, this.store);
     })
 
-    this.store.dispatch({type: INCREMENT});
+    // this.store.dispatch({type: INCREMENT});
 
     this.login.subscribe((state) => {
       this.loginRdInfo = state
-      console.log(this.loginRdInfo)
-    })
+      console.log(this.loginRdInfo);
+    });
   }
 }

@@ -1,14 +1,16 @@
 /**
  * Created by LG0812 on 2017/10/30.
  */
-import {apiHost} from '../../config';
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
+
 @Injectable()
 export class Req {
-  count:number=1;
+
   private headers = new Headers({
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Content-Type': 'application/json',
+    'at': '',
+    'ht': ''
   });
 
   constructor(private http: Http) {
@@ -16,34 +18,54 @@ export class Req {
   }
 
   get(url, params) {
+    this.headers.set('at', sessionStorage.getItem('at'));
+    this.headers.set('ht', sessionStorage.getItem('ht'));
+    this.headers.set('Content-Type', 'application/json');
     let queryString = '?';
     if (params) {
       for (const p in params) {
         queryString += p + '=' + params[p] + '&';
       }
     }
-    return this.http.get(apiHost + url + queryString)
+    return this.http.get(url + queryString, {headers: this.headers})
       .toPromise()
       .then(res => {
         // let data = response.json().data;
         const data = res.json();
-        console.log(data);
         return data;
-      })
+      }, (res) => this.handleError(res))
       .catch(this.handleError);
   }
 
   post(url, params) {
+    this.headers.set('at', sessionStorage.getItem('at'));
+    this.headers.set('ht', sessionStorage.getItem('ht'));
+    this.headers.set('Content-Type', 'application/json');
     return this.http
-      .post(apiHost + url, null, {headers: this.headers, search: params})
+      .post(url, JSON.stringify(params), {headers: this.headers})
       .toPromise()
       .then(res => {
         const data = res.json();
-        console.log(data);
         return data;
-      })
+      }, (res) => this.handleError(res))
       .catch(this.handleError);
   }
+
+
+  postUpload(url, params) {
+    this.headers.set('at', sessionStorage.getItem('at'));
+    this.headers.set('ht', sessionStorage.getItem('ht'));
+    this.headers.delete('Content-Type');
+    return this.http
+      .post(url, params, {headers: this.headers})
+      .toPromise()
+      .then(res => {
+        const data = res.json();
+        return data;
+      }, (res) => this.handleError(res))
+      .catch(this.handleError);
+  }
+
 
   formatData(data) {
     let str = '';
@@ -60,7 +82,7 @@ export class Req {
   }
 
   reqUtils(params) {
-    fetch(apiHost + params.path, {
+    fetch(params.path, {
       method: params.method,
       mode: 'cors',
       headers: {
@@ -82,7 +104,7 @@ export class Req {
   }
 
   reqFormUtils(params) {
-    fetch(apiHost + params.path, {
+    fetch(params.path, {
       method: params.method,
       mode: 'cors',
       body: params.data
@@ -104,4 +126,5 @@ export class Req {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
   }
+
 }

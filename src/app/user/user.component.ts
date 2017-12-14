@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -6,8 +7,12 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  results: string[];
+  constructor(private router: Router) {
+  }
+
+  show: any;
 
   ngOnInit(): void {
+    this.show = this.router;
   }
 }

@@ -1,1 +1,231 @@
-网络监控：net
+<div class="d-flex flex-column h-100">
+  <app-header class="flex-grow0"></app-header>
+  <div class="flex-grow1 d-flex  w-100 flex-row" style="border-top: 1px solid silver;">
+    <div class="flex-grow1">
+      <div class="w-100 h-100 position-relative">
+        <div id="serviceMap" class="position-absolute" style="top: 0;bottom: 0;left: 0;right: 0;"></div>
+      </div>
+    </div>
+    <div class="flex-grow0 d-flex flex-column position-relative" style="border-left: 1px solid silver;">
+      <div class="w-100 btn-group-center">
+        <div class="btn-group" role="group">
+          <button type="button" class="{{'btn ' + (service.type == 0 ? 'btn-primary' : 'btn-default') }}"
+                  (click)="serviceType(0)">告警设备
+          </button>
+
+          <button type="button" class="{{'btn ' + (service.type == 2 ? 'btn-primary' : 'btn-default') }}"
+                  (click)="serviceType(2)">历史告警
+          </button>
+
+          <button type="button" class="{{'btn ' + (service.type == 3? 'btn-primary' : 'btn-default') }}"
+                  (click)="serviceType(3)">政企用户
+          </button>
+
+          <button type="button" class="{{'btn ' + (service.type == 4? 'btn-primary' : 'btn-default') }}"
+                  (click)="serviceType(4)">全部铁塔
+          </button>
+        </div>
+      </div>
+
+      <div class="w-100 position-absolute refresh-up"
+           style="left: 0;right:0px;bottom:0px;top: 65px;overflow-y: scroll"
+           (scroll)="onScroll($event)">
+        <table class="table" *ngIf="service.type == 0">
+          <thead>
+          <tr>
+            <th>基站编号</th>
+            <th>设备数量</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let present of service.presentAlarm; index as i;" (click)="getPosition(present)">
+            <td colspan="2" style="padding: 0px;" class="pointer">
+              <div class="w-100" style="line-height: 40px;">
+                <div style="background-color: #f2f2f2;padding: 0 15px;">{{present.createTime}}</div>
+                <div style="padding: 0 15px;">
+                  <div class="pull-left">{{present.orderNo}}</div>
+                  <div class="pull-right">{{present.count}}</div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="service.presentLoading">
+            <td colspan="2">
+              <div class="w-100   d-flex justify-content-center">
+                <div class="spinner" style="margin: 0;">
+                  <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                </div>
+                <div style="line-height: 25px;margin-left: 10px;">加载中...</div>
+              </div>
+          </tr>
+          </tbody>
+        </table>
+
+
+        <table class="table table-hover" *ngIf="service.type == 3">
+          <thead>
+          <tr>
+            <th>基站编号</th>
+            <th>设备数量</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let present of service.deviceAlarm; index as i;" (click)="getPosition(present)">
+            <td colspan="2" style="padding: 0px;" class="pointer">
+              <div class="w-100" style="line-height: 40px;">
+                <!--<div style="background-color: #f2f2f2;padding: 0 15px;">{{present.createTime}}</div>-->
+                <div style="padding: 0 15px;">
+                  <div class="pull-left">{{present.orderNo}}</div>
+                  <div class="pull-right">{{present.count}}</div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="service.deviceLoading">
+            <td colspan="2">
+              <div class="w-100   d-flex justify-content-center">
+                <div class="spinner" style="margin: 0;">
+                  <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                </div>
+                <div style="line-height: 25px;margin-left: 10px;">加载中...</div>
+              </div>
+          </tr>
+          </tbody>
+        </table>
+
+        <table class="table table-hover" *ngIf="service.type == 2">
+          <thead>
+          <tr>
+            <th>基站编号</th>
+            <th>设备数量</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let present of service.historyAlarm; index as i;" (click)="getPosition(present)">
+            <td colspan="2" style="padding: 0px;" class="pointer">
+              <div class="w-100" style="line-height: 40px;">
+                <!--<div style="background-color: #f2f2f2;padding: 0 15px;">{{present.createTime}}</div>-->
+                <div style="padding: 0 15px;">
+                  <div class="pull-left">{{present.orderNo}}</div>
+                  <div class="pull-right">{{present.count}}</div>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="service.historyLoading">
+            <td colspan="2">
+              <div class="w-100   d-flex justify-content-center">
+                <div class="spinner" style="margin: 0;">
+                  <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                </div>
+                <div style="line-height: 25px;margin-left: 10px;">加载中...</div>
+              </div>
+          </tr>
+          </tbody>
+        </table>
+
+
+        <table class="table table-hover" *ngIf="service.type == 4">
+          <thead>
+          <tr>
+            <th>基站编号</th>
+            <th>设备数量</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let present of service.allDeviceAlarm; index as i;" (click)="getPosition(present)">
+            <td colspan="2" style="padding: 0px;" class="pointer">
+              <div class="w-100" style="line-height: 40px;">
+                <!--<div style="background-color: #f2f2f2;padding: 0 15px;">{{present.createTime}}</div>-->
+                <div style="padding: 0 15px;">
+                  <div class="pull-left">{{present.orderNo}}</div>
+                  <div class="pull-right">{{present.count}}</div>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="service.allDeviceLoading">
+            <td colspan="2">
+              <div class="w-100   d-flex justify-content-center">
+                <div class="spinner" style="margin: 0;">
+                  <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                </div>
+                <div style="line-height: 25px;margin-left: 10px;">加载中...</div>
+              </div>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

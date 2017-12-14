@@ -1,0 +1,137 @@
+<div class="device-body">
+  <app-header class="flex-grow0"></app-header>
+  <div class="d-main">
+    <tabset #staticTabs>
+      <tab heading="绑定列表">
+        <div *ngIf="!show" class="d-list">
+          <div class="d-content">
+            <div class="d-table">
+              <table class="table table-hover">
+                <thead>
+                  <th>序号</th>
+                  <th>设备编号</th>
+                  <th>设备SN号</th>
+                  <th>创建时间</th>
+                  <th>状态</th>
+                </thead>
+                <tbody>
+                <tr (click)="show=true;queryDeviceSNList()">
+                  <td>1</td>
+                  <td>GBJC-001-01</td>
+                  <td>5234583945829</td>
+                  <td>2017/09/08</td>
+                  <td>已绑定</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>GBJC-001-02</td>
+                  <td>5234583945829</td>
+                  <td>2017/12/08</td>
+                  <td>未绑定</td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="d-page">
+                <div class="col-md-12">
+                  <pagination previousText="上一页" nextText="下一页" [totalItems]="bigTotalItems" class="pagination-sm"
+                              [boundaryLinks]="false" [rotate]="false" (numPages)="numPages = $event" (pageChanged)="pageChanged($event)"></pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="show" class="d-add">
+          <div class="d-leftCon fl">
+            <div class="d-table">
+              <table class="table-hover">
+                <thead>
+                <th>序号</th>
+                <th>设备编号</th>
+                </thead>
+                <tbody>
+                <tr><td>1</td><td>GBJC-001-01</td></tr>
+                <tr><td>2</td><td>GBJC-001-02</td></tr>
+                <tr><td>3</td><td>GBJC-001-03</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+          <div class="d-rightCon fr">
+            <div (click)="show=false;" class="pull-btn">
+              <div class="triangle-left"></div>
+            </div>
+            <div class="d-form sev-detail">
+              <div class="d-info-title">管制设备</div>
+              <div class="itemDetail">
+                <label class="d-label">
+                  <span style="border-bottom:none;margin-bottom:-1px;" class="title">*设备SN号</span>
+                  <select [(ngModel)]="selectedSN" (change)="selectDeviceSN()" name="type" >
+                    <!--<option *ngFor="let item of deviceSNList" value =""></option>-->
+                    <option value =""></option>
+                  </select>
+                </label>
+                <!--<label class="d-label">-->
+                  <!--<span style="border-bottom:none;margin-bottom:-1px;" class="title">*设备SN号</span>-->
+                  <!--<input name="latitude" type="text" value="4343432432">-->
+                <!--</label>-->
+                <!--<button class="unbind-btn">解除绑定</button>-->
+                <div class="towerInfo">
+                  <p class="fl">
+                    设备类型：
+                    <span>XXX</span>
+                  </p>
+                  <p class="fl">
+                    设备来源：
+                    <span>XXX</span>
+                  </p>
+                  <p class="fl">
+                    设备状态：
+                    <span>XXX</span>
+                  </p>
+                  <p class="fl">
+                    设备责任人姓名：
+                    <span>XXX</span>
+                  </p>
+                  <p class="fl">
+                    设备责任人联系方式：
+                    <span>XXX</span>
+                  </p>
+                  <div class="clear"></div>
+                  <div class="d-info-title">订单信息</div>
+                  <div class="order-info">
+                    <p class="fl">
+                      订单编号：
+                      <span>XXX</span>
+                    </p>
+                    <p class="fl">
+                      用户单位：
+                      <span>XXX</span>
+                    </p>
+                    <p class="fl">
+                      服务开始日期：
+                      <span>XXX</span>
+                    </p>
+                    <p class="fl">
+                      服务结束日期：
+                      <span>XXX</span>
+                    </p>
+                    <div class="clear"></div>
+                  </div>
+                  <div style="border-bottom: 1px solid #e5e6e7;" class="d-info-title">备注</div>
+                  <textarea class="fr"></textarea>
+                </div>
+              </div>
+
+            </div>
+            <div class="d-btn fr">
+              <button (click)="show=false;" class="d-cancle">取消</button>
+              <button (click)="addDevice()" class="d-save">保存</button>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>

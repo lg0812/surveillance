@@ -1,0 +1,45 @@
+.table-self {
+  position: relative;
+  margin-bottom: 0px;
+  thead {
+    tr:first-child {
+      border: 1px solid #ddd;
+      background-color: #F8F8F8;
+      th {
+        border-bottom: none;
+      }
+      th:last-child {
+        text-align: right;
+      }
+    }
+    &:after {
+      content: "";
+      display: block;
+      height: 10px;
+      width: 100%;
+      background: white;
+    }
+  }
+  tbody {
+    //border: 1px solid #ddd;
+    //tr:first-child > td {
+    //  border-top: none;
+    //}
+    td:last-child {
+      text-align: right;
+    }
+  }
+
+  thead, tbody {
+    tr {
+      border: 1px solid #ddd;
+      //border-right: 1px solid #ddd;
+      td {
+        width: 1/6*100%;
+      }
+      th {
+        width: 1/6*100%;
+      }
+    }
+  }
+}

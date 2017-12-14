@@ -1,1 +1,128 @@
-服务管理：service
+<div class="d-flex flex-column h-100">
+  <app-header class="flex-grow0"></app-header>
+  <div class="flex-grow1 d-flex  w-100 flex-row" style="border-top: 1px solid silver;">
+    <div class="flex-grow1">
+      <div class="w-100 h-100 position-relative">
+        <div id="serviceMap" class="position-absolute" style="top: 0;bottom: 0;left: 0;right: 0;"></div>
+      </div>
+    </div>
+    <div class="flex-grow0 d-flex flex-column position-relative" style="border-left: 1px solid silver;">
+      <div class="w-100 btn-group-center" style="background-color: #fff">
+        <div class="btn-group" role="group">
+          <button type="button" class="{{'btn ' + (service.type == 0 ? 'btn-primary' : 'btn-default') }}"
+                  (click)="serviceType(0)">告警设备
+          </button>
+          <button type="button" class="{{'btn ' + (service.type == 1 ? 'btn-primary' : 'btn-default') }}"
+                  (click)="serviceType(1)">历史告警
+          </button>
+        </div>
+      </div>
+
+      <div class="w-100 position-absolute  refresh-up"
+           style="left: 0;right:0px;bottom:0px;top: 65px;overflow-y: scroll"
+           (scroll)="onScroll($event)">
+        <table class="table table-hover" *ngIf="service.type == 0">
+          <thead>
+          <tr>
+            <th>基站编号</th>
+            <th>时间</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let present of service.presentAlarm; index as i;" (click)="getPosition(present)">
+            <td>{{present.orderNo}}</td>
+            <td>{{present.createTime}}</td>
+          </tr>
+          <tr *ngIf="service.presentLoading">
+            <td colspan="2">
+              <!--<div class="w-100 d-flex justify-content-center">-->
+              <!--<div class="loader" style="width: 25px;height: 25px;margin: 0;">-->
+              <!--<svg class="circular" viewBox="25 25 50 50">-->
+              <!--<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"-->
+              <!--stroke-miterlimit="10"></circle>-->
+              <!--</svg>-->
+              <!--</div>-->
+              <!--<div style="line-height: 25px;margin-left: 10px;">加载中...</div>-->
+              <!--</div>-->
+              <div class="w-100  d-flex justify-content-center">
+                <div class="spinner" style="margin: 0;">
+                  <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                </div>
+                <div style="line-height: 25px;margin-left: 10px;">加载中...</div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+
+        <table class="table table-hover" *ngIf="service.type == 1">
+          <thead>
+          <tr>
+            <th>基站编号</th>
+            <th>时间</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let present of service.historyAlarm; index as i;" (click)="getPosition(present)">
+            <td>{{present.orderNo}}</td>
+            <td>{{present.createTime}}</td>
+          </tr>
+          <tr *ngIf="service.historyLoading">
+            <td colspan="2">
+              <!-- <div class="w-100 d-flex justify-content-center">
+                 <div class="loader" style="width: 25px;height: 25px;margin: 0;">
+                   <svg class="circular" viewBox="25 25 50 50">
+                     <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"
+                             stroke-miterlimit="10"></circle>
+                   </svg>
+                 </div>
+                 <div style="line-height: 25px;margin-left: 10px;">加载中...</div>
+               </div>-->
+              <div class="w-100   d-flex justify-content-center">
+                <div class="spinner" style="margin: 0;">
+                  <div class="spinner-container container1">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container2">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                  <div class="spinner-container container3">
+                    <div class="circle1"></div>
+                    <div class="circle2"></div>
+                    <div class="circle3"></div>
+                    <div class="circle4"></div>
+                  </div>
+                </div>
+                <div style="line-height: 25px;margin-left: 10px;">加载中...</div>
+              </div>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

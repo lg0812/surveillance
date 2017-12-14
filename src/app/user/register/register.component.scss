@@ -1,0 +1,49 @@
+.register-steps {
+  padding: 10px 0;
+  .active {
+    color: #1E87F0;
+    span {
+      border-color: #1E87F0;
+    }
+  }
+  > div {
+    margin-right: 15px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
+
+.err-border {
+  border-color: #ef506e !important;
+}
+
+.form-group-error {
+  > label {
+    > span {
+      display: inline-block;
+    }
+  }
+  input {
+    border-color: #ef506e !important;
+  }
+  select {
+    border-color: #ef506e !important;
+  }
+  .div-img-border {
+    border-color: #ef506e !important;
+  }
+}
+
+.form-group-right {
+  > label {
+    > span {
+      display: none !important;
+    }
+  }
+  input {
+  }
+  select {
+  }
+
+}

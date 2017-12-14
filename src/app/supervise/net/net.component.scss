@@ -1,0 +1,13 @@
+
+.btn-group-center {
+  padding: 15px;
+  width: 100%;
+  border-bottom: 1px solid silver;
+  .btn-group {
+    width: 300px;
+    margin: 0px auto;
+    button {
+      width: 25%;
+    }
+  }
+}

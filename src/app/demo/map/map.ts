@@ -4,7 +4,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Req} from '../../common/req';
 import {Router} from '@angular/router';
+import {MapService} from "../../service/map.service";
+
 declare var BMap;
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.html',
@@ -273,7 +276,7 @@ export class BdMapComponent implements OnInit {
   ];
   map = null;
 
-  constructor(private req: Req, private router: Router) {
+  constructor(private req: Req, private router: Router, private mapService: MapService) {
     console.log(req);
   }
 
@@ -289,103 +292,8 @@ export class BdMapComponent implements OnInit {
     // this.map.centerAndZoom(point, 18);
     this.map.enableScrollWheelZoom(true);
     this.map.addControl(new BMap.NavigationControl());
-    for (var t = 0; t < this.dataList.length; t++) {
-      this.addPoint(this.dataList[t], t);
-    }
-  }
-
-  addPoint(item, index) {
-    var p = new BMap.Point(item.lat, item.lng);
-    this.map.centerAndZoom(p, 13);
-    var img = "../../../assets/images/jizhan.png";
-    var style = {
-      strokeColor: "#ff8d92",    //边线颜色。
-      fillColor: "#ff8d92",      //填充颜色。当参数为空时，圆形将没有填充效果。
-      strokeWeight: 1,       //边线的宽度，以像素为单位。
-      strokeOpacity: 0.7,      //边线透明度，取值范围0 - 1。
-      fillOpacity: 0.7,      //填充的透明度，取值范围0 - 1。
-      strokeStyle: 'solid' //边线的样式，实线solid或虚线dashed。
-    };
-
-
-    if (item.count == 0) {
-      style.strokeColor = "#ADADAD";
-      style.fillColor = "#CCCCCC";
-    }
-
-    if (item.status == '待处理') {
-      img = "../../../assets/images/jizhan.gif";
-      style.strokeColor = "#3fa0ff";
-      style.fillColor = "#3fa0ff";
-    }
-    var myIcon = new BMap.Icon(img, new BMap.Size(23, 25));
-    var marker = new BMap.Marker(p, {icon: myIcon});  // 创建标注
-    this.map.addOverlay(marker);
-    this.dataList[index].marker = marker;
-    var opts = {
-      width: 250,
-      title: "基站：" + item.orderNo
-    };
-
-    var infoWindow = new BMap.InfoWindow("当前设备：" + item.count + "个", opts);
-    marker.addEventListener("click", function () {
-      this.map.openInfoWindow(infoWindow, p);//打开信息窗口
-    });
-    var overlay = this.heartShaped(p, item.distance, item.j, style);
-    this.map.addOverlay(overlay);
-    this.dataList[index].overlay = overlay;
+    this.mapService.addPointByService(this.dataList, this.map, true);
   }
 
 
-  heartShaped(point2, radius, sDegree, opts) {
-    console.log(point2, ">>>>>>>>>>>>>>>>>>>>>>>>")
-    var rotation = 0;
-    var vertexCount = 500;
-    var rot = -rotation * Math.PI / 180;
-    var points = [];
-    var latConv = this.map.getDistance(point2, new BMap.Point(point2.lng, point2.lat + 0.1)) * 10;
-    var lngConv = this.map.getDistance(point2, new BMap.Point(point2.lng + 0.1, point2.lat)) * 10;
-    var step = (360 / vertexCount) || 10;
-    var flop = -1;
-    var I1 = 0;
-    // start 弧的圆形的三点钟位置是 0 度）
-    var r = 0, a = 40,
-
-      start = 0;//,end = 0;
-    start = sDegree;
-    for (var i = I1; i <= 360.001 + I1; i += step) {
-
-      flop = -1 - flop;
-
-      //  start += Math.PI * 2 / 700;
-      start += Math.PI * 2 / 500;
-      //end = start + Math.PI * 2 / 700;
-      // r = radius* Math.sqrt(225 / (17 - 16 * Math.sin(start) * Math.sqrt(Math.cos(start) * Math.cos(start))));
-      r = radius * (1 - Math.sin(start)); //心形极坐标表
-
-      var y = r * Math.cos(i * Math.PI / 180);
-      var x = r * Math.sin(i * Math.PI / 180);
-      var lng = (x * Math.cos(rot) - y * Math.sin(rot)) / lngConv;
-      var lat = (y * Math.cos(rot) + x * Math.sin(rot)) / latConv;
-
-      points.push(new BMap.Point(point2.lng + lng, point2.lat + lat));
-    }
-
-
-    if (opts == undefined) {
-      opts = {
-        strokeColor: "#514cff",    //边线颜色。
-        fillColor: "#3fa0ff",      //填充颜色。当参数为空时，圆形将没有填充效果。
-        strokeWeight: 3,       //边线的宽度，以像素为单位。
-        strokeOpacity: 0.7,      //边线透明度，取值范围0 - 1。
-        fillOpacity: 0.5,      //填充的透明度，取值范围0 - 1。
-        strokeStyle: 'solid' //边线的样式，实线solid或虚线dashed。
-      };
-    }
-    var polygon = new BMap.Polygon(
-      points
-      , opts);
-
-    return polygon;
-  }
 }

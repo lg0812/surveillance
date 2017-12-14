@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes, PreloadAllModules} from '@angular/router';
 import {ErrorComponent} from './error/error.component';
 import {LoginComponent} from './user/login/login.component';
 import {ResetComponent} from './user/reset/reset.component';
@@ -18,6 +18,10 @@ import {DeviceComponent} from './supervise/device/device.component';
 import {NetComponent} from './supervise/net/net.component';
 import {ServiceCtrlComponent} from './supervise/serviceCtrl/serviceCtrl.component';
 import {SystemCtrlComponent} from './supervise/systemCtrl/systemCtrl.component';
+import {UserAccountComponent} from "./supervise/userAccount/userAccount.component";
+import {ResourceComponent} from "./supervise/resource/resource.component";
+import {AllocationComponent} from './supervise/allocation/allocation.component';
+import {BindDeviceComponent} from './supervise/bindDevice/bindDevice.component';
 const appRoutes: Routes = [
   // 空路径（''）表示应用的默认路径，当URL为空时就会访问那里，因此它通常会作为起点。 这个默认路由会重定向到URL /login
   {
@@ -47,8 +51,15 @@ const appRoutes: Routes = [
     path: 'supervise',
     component: SuperviseComponent,
     children: [{
+      path: '',
+      redirectTo: '/supervise/userAuth',
+      pathMatch: 'full'
+    }, {
       path: 'userAuth',
       component: UserAuthComponent
+    }, {
+      path: 'userAccount',
+      component: UserAccountComponent
     }, {
       path: 'pylonAuth',
       component: PylonAuthComponent
@@ -70,6 +81,15 @@ const appRoutes: Routes = [
     }, {
       path: 'systemCtrl',
       component: SystemCtrlComponent
+    }, {
+      path: 'resource',
+      component: ResourceComponent
+  }, {
+      path: 'allocation',
+      component: AllocationComponent
+    }, {
+      path: 'bindDevice',
+      component: BindDeviceComponent
     }]
   },
   {
@@ -102,8 +122,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       // <-- debugging purposes only  并且使用hash路由
-      {enableTracing: false, useHash: true}
-    )
+      {enableTracing: false, useHash: true, preloadingStrategy: PreloadAllModules}
+    ),
   ],
   exports: [
     RouterModule

@@ -1,0 +1,16 @@
+<div class="position-absolute" style="top: 0px;left: 0px;right: 0px;bottom: 0px;"
+     *ngIf="prompt.info.promptType ==0 && prompt.isOpen">
+  <div class="d-flex justify-content-center align-items-center w-100 h-100">
+    <div
+      style="padding:20px;width: 150px;height:150px;border-radius: 4px;background-color: rgba(0,0,0,.8)">
+      <div class="d-flex justify-content-center flex-wrap w-100"><img src="{{prompt.info.imgPath}}" style=""/></div>
+      <div class="w-100 text-center" style="margin-top: 10px;color: #fff">{{prompt.info.text}}</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="position-absolute" style="top: 0px;left: 0px;right: 0px;bottom: 0px;"
+     *ngIf="prompt.info.promptType ==1 && prompt.isOpen">
+  <div class="preloader"></div>
+</div>

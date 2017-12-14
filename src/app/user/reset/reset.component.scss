@@ -1,0 +1,110 @@
+.reset-body{background: #fff;margin: 0;padding: 1px 0;  list-style: none;  text-decoration: none;  font-family: "Microsoft Yahei";}
+.steps{    padding: 40px 0 20px;
+  text-align: center;}
+.steps li {height: 43px;line-height: 43px; display: inline-block;margin-right: 13px;color: #bcbcbc;
+  font-size: 13px;}
+
+.steps li:before,.steps li:after {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  background: #E1E1E0 url("../../../assets/images/iconFile.png") center center no-repeat;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.steps li:nth-child(2):before {
+  background-image: url("../../../assets/images/iconLock.png");
+}
+.steps li:nth-child(3):before {
+   background-image: url("../../../assets/images/iconExit.png");
+ }
+.steps li.active {color: #C00;}
+.steps li.active:before {background-color: #C00;  }
+.steps li:after {
+  background-image: url("../../../assets/images/iconNext.png");
+  background-position: 0 -50px;
+  background-color: transparent;
+  margin-right: 0;
+  margin-left: 15px;  }
+.steps li.active:after {background-position: 0 -5px;  }
+.reset-label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #999;
+}
+.reset-label .title {
+  font-weight: normal;
+  color: #333;
+  font-size: 14px;
+  display: block;
+  line-height: 38px;
+}
+.reset-label input {
+  width: 100%;
+  padding: 10px 10px 10px 32px;
+  box-sizing: border-box;
+  height: 34px;
+  border: 1px solid #E6E6E6;
+  outline: none;
+  border-radius: 3px;
+  font-weight: normal;
+  font-size: 12px;
+}
+input.phone {background: url("../../../assets/images/iconPhone.png") 7px center no-repeat;  }
+.reset-body form {width: 342px;margin: 0 auto 170px;}
+.reset-label input.vcode4tel {
+  width: 174px;
+  margin-right: 0px;
+}
+.getTelVcode {
+  float: right;
+  color: #C00;
+  display: inline-block;
+  height: 34px;
+  width: 150px;
+  text-align: center;
+  border: 1px solid #E6E6E6;
+  font-weight: normal;
+  font-size: 13px;
+  background: #fff;
+}
+.reset-label input.vcode4tel {
+  width: 160px;
+  margin-right: 18px;
+  background: url("../../../assets/images/iconVcode.png") 7px center no-repeat;
+}
+button.submit {
+  display: block;
+  width: 50%;
+  background-color: #C00;
+  border: none;
+  margin: 35px auto 0;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  font-size: 14px;
+  color: #FFF;
+  outline: none;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.errorInfo {
+  margin-top: 10px;
+  border: 1px dotted #c00;
+  background-color: #ffffb8;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  color: #C00;
+  text-align: center;
+}
+.reset-body{
+  .r-alert {border: 1px solid #C00;}
+  .validateInfo{font-size:12px;text-align: center;height:18px;}
+  .reset-back{display: block;color: #212529;text-align: center;cursor: pointer;}
+  .reset-text{padding:30px 0;text-align: center;}
+}

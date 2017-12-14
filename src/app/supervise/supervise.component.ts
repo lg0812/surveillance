@@ -4,7 +4,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-prompt',
+  selector: 'app-supervise',
   templateUrl: './supervise.component.html'
 })
 export class SuperviseComponent implements OnInit {

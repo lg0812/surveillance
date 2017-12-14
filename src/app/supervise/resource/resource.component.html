@@ -1,0 +1,145 @@
+<div class="device-body">
+  <app-header class="flex-grow0"></app-header>
+  <div class="d-main">
+    <tabset #staticTabs>
+      <tab heading="资源管理">
+        <div *ngIf="!show" class="d-list">
+          <div class="d-content">
+            <div class="d-btns">
+              <button (click)="show=true;" class="btn btn-primary fr add-btn">添加资源</button>
+              <button class="btn btn-primary fr export-btn">导入Excel
+                <input type="file" multiple="multiple" id="file" accept=""  />
+              </button>
+              <button class="btn btn-primary fr export-btn">导出Excel</button>
+              <div class="clear"></div>
+            </div>
+            <div class="d-table">
+              <table class="table table-hover">
+                <thead>
+                <th>序号</th>
+                <th>资源编号</th>
+                <th>资源类型</th>
+                <th>资源状态</th>
+                <th>创建时间</th>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>GBJC-001-01</td>
+                  <td>基站塔</td>
+                  <td>正常</td>
+                  <td>2017/09/08 12:20:09</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>GBJC-001-02</td>
+                  <td>基站塔</td>
+                  <td>正常</td>
+                  <td>2017/12/08 12:20:09</td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="d-page">
+                <div class="col-md-12">
+                  <pagination previousText="上一页" nextText="下一页" [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
+                              [boundaryLinks]="false" [rotate]="false" (numPages)="numPages = $event" (pageChanged)="pageChanged($event)"></pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="show" class="d-add">
+          <div class="d-leftCon fl">
+            <div class="d-table">
+              <table class="table-hover">
+                <thead>
+                <th>序号</th>
+                <th>设备编号</th>
+                </thead>
+                <tbody>
+                <tr><td>1</td><td>GBJC-001-01</td></tr>
+                <tr><td>2</td><td>GBJC-001-02</td></tr>
+                <tr><td>3</td><td>GBJC-001-03</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+          <div class="d-rightCon fr">
+            <div (click)="show=false;" class="pull-btn">
+              <div class="triangle-left"></div>
+            </div>
+            <div class="d-form">
+              <div class="de-info">
+                <div class="d-info-title">基本信息</div>
+                <label class="d-label">
+                  <span class="title">*资源编号</span>
+                  <input (focus)="errNMFlag=false;" [ngClass]="{'d-alert': errNMFlag}" [(ngModel)]="addResourceInfo.NM" name="NM" type="text">
+                </label>
+                <label class="d-label">
+                  <span class="title">*资源类型</span>
+                  <select name="type" [(ngModel)]="addResourceInfo.type">
+                    <option value ="基站塔">基站塔</option>
+                    <option value ="单管塔">单管塔</option>
+                    <option value ="角钢塔">角钢塔</option>
+                    <option value ="钢管塔">钢管塔</option>
+                    <option value ="拉线式铁塔">拉线式铁塔</option>
+                  </select>
+                </label>
+                <label class="d-label">
+                  <span class="title">*资源状态</span>
+                  <select name="status" [(ngModel)]="addResourceInfo.status" >
+                    <option value="正常">正常</option>
+                    <option value="维修">维修</option>
+                  </select>
+                </label>
+                <label class="d-label">
+                  <span class="title">*经度</span>
+                  <input (focus)="errLongitudeFlag=false;" [ngClass]="{'d-alert': errLongitudeFlag}" [(ngModel)]="addResourceInfo.longitude" name="longitude" type="text" >
+                </label>
+                <label class="d-label">
+                  <span class="title">*纬度</span>
+                  <input (focus)="errLatitudeFlag=false;" [ngClass]="{'d-alert': errLatitudeFlag}" [(ngModel)]="addResourceInfo.latitude" name="latitude" type="text" placeholder="" class="">
+                </label>
+                <label class="d-label">
+                  <span class="title">地址</span>
+                  <input (focus)="errContactFlag=false;" [ngClass]="{'d-alert': errContactFlag}" [(ngModel)]="addResourceInfo.address" name="address" type="text">
+                </label>
+                <label class="d-label">
+                  <span class="title">省</span>
+                  <select (change)="selectCity(addResourceInfo.province)" id="province" name="type" [(ngModel)]="addResourceInfo.province">
+                    <option *ngFor="let province of provinceList" value="{{province.p}}" >{{province.p}}</option>
+                  </select>
+                </label>
+                <label class="d-label">
+                  <span class="title">市</span>
+                  <select name="type" [(ngModel)]="addResourceInfo.city">
+                    <option value ="">--请选择--</option>
+                    <option *ngFor="let city of cityList" value ="{{city.n}}">{{city.n}}</option>
+                  </select>
+                </label>
+                <label class="d-label">
+                  <span class="title">分公司</span>
+                  <input (focus)="errContactFlag=false;" [(ngModel)]="addResourceInfo.branch" name="branch" type="text">
+                </label>
+                <label class="d-label">
+                  <span class="title">责任人姓名</span>
+                  <input (focus)="errContactFlag=false;" [(ngModel)]="addResourceInfo.user" name="user" type="text">
+                </label>
+                <label class="d-label">
+                  <span class="title">责任人联系方式</span>
+                  <input (focus)="errContactFlag=false;" [ngClass]="{'d-alert': errContactFlag}" [(ngModel)]="addResourceInfo.contact" name="contact" type="text">
+                </label>
+              </div>
+            </div>
+            <div class="d-btn fr">
+              <button (click)="show=false;" class="d-cancle">取消</button>
+              <button (click)="addDevice()" class="d-save">保存</button>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+</div>

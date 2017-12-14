@@ -9,3 +9,8 @@ ngFor使用方法：
 <li *ngFor="let user of userObservable | async as users; index as i; first as isFirst">
   {{i}}/{{users.length}}. {{user}} <span *ngIf="isFirst">default</span>
 </li>
+
+
+radio btn的使用方法：
+<input type="radio" name="naaa"
+       [(ngModel)]="item_.readOnly" [value]="false"/>
