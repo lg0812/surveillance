@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Surveillance</title><base href="/surveillance/"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico"><script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=yxsW5pa8uKWGwzP3lG1REevZ"></script><link href="styles.39fa61636a8bbcad9bf7.bundle.css" rel="stylesheet"/></head><body><script type="text/javascript">var commonUtils = {}
+  window.onload = function () {
+    var userAgent = window.navigator.userAgent;
+//    console.log(userAgent);
+    var isIE = userAgent.indexOf('compatible') > -1 && userAgent.indexOf('MSIE') > -1;
+    var reIE = new RegExp(/MSIE (\d+\.\d+)/).test(userAgent);
+//    console.log(reIE, RegExp.$1);
+    if (isIE && parseFloat(RegExp.$1) < 10) {
+      document.getElementsByTagName('body')[0].innerHTML = "您正在使用的是IE浏览器，版本太低，请升级到IE10及以上版本或者使用其他浏览器访问此页面！"
+    }
+
+
+  }
+
+
+  var ttt = function () {
+    alert("11111")
+  }</script><app-root></app-root><script type="text/javascript" src="inline.bc2c07fd21a486381bb9.bundle.js"></script><script type="text/javascript" src="polyfills.3b1853ec949f4861cd01.bundle.js"></script><script type="text/javascript" src="vendor.c1c4bced763b540b0ff6.bundle.js"></script><script type="text/javascript" src="main.34abe68c63ec5f131353.bundle.js"></script></body></html>
