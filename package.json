@@ -7,7 +7,7 @@
     "start": "ng serve --port 8080 --proxy-config proxy.conf.json",
     "uat": "ng build --uat",
     "build": "ng build --base-href /dist/ --prod",
-    "prod": "ng build --prod",
+    "prod": "ng build --base-href /dist/ --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
