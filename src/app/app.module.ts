@@ -31,7 +31,7 @@ import {AppRoutingModule} from './app-routeing.module';
 import {reducer} from './reducer';
 import {StoreModule} from '@ngrx/store';
 import {BsDropdownModule, BsDatepickerModule, ButtonsModule, PaginationModule, TabsModule} from 'ngx-bootstrap';
-import {defineLocale} from 'ngx-bootstrap/bs-moment';
+import { defineLocale } from 'ngx-bootstrap/chronos';
 import {zhCn} from 'ngx-bootstrap/locale';
 import {UserAccountComponent} from "./supervise/userAccount/userAccount.component";
 import {AllocationComponent} from './supervise/allocation/allocation.component';
