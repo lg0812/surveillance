@@ -32,14 +32,14 @@ import {reducer} from './reducer';
 import {StoreModule} from '@ngrx/store';
 import {BsDropdownModule, BsDatepickerModule, ButtonsModule, PaginationModule, TabsModule} from 'ngx-bootstrap';
 import { defineLocale } from 'ngx-bootstrap/chronos';
-import {zhCn} from 'ngx-bootstrap/locale';
+import {zhCnLocale} from 'ngx-bootstrap/locale';
 import {UserAccountComponent} from "./supervise/userAccount/userAccount.component";
 import {AllocationComponent} from './supervise/allocation/allocation.component';
 import {StopDirective} from "./directive/stopDirective";
 import {SortDirective} from "./directive/sortDirective";
 import {BindDeviceComponent} from './supervise/bindDevice/bindDevice.component';
 
-defineLocale(zhCn.abbr, zhCn);
+defineLocale(zhCnLocale.abbr, zhCnLocale);
 
 @NgModule({
   // 声明哪些组件、指令、管道属于该模块

@@ -3,10 +3,10 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {Req} from "../../common/req";
-import {defineLocale} from 'ngx-bootstrap/bs-moment';
-import {zhCn} from 'ngx-bootstrap/locale';
+import {defineLocale} from 'ngx-bootstrap/chronos';
+import {zhCnLocale} from 'ngx-bootstrap/locale';
 import citys from '../../common/city';
-defineLocale('zh-cn', zhCn);
+defineLocale(zhCnLocale.abbr, zhCnLocale);
 @Component({
   selector: 'app-resource',
   templateUrl: './resource.component.html',
