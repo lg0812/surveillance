@@ -40,6 +40,9 @@ export const promptReducer = (state = initialState, action: Action): State => {
 export const openToast = (store, params) => {
   setTimeout(() => {
     store.dispatch({type: OPEN, payload: params});
+    setTimeout(() => {
+      closeToast(store);
+    }, 3000);
   }, 1);
 }
 
